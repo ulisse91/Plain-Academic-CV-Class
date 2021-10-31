@@ -1,0 +1,35 @@
+\documentclass[]{plain_academic_cv}
+
+\name{Name Surname}
+\department{Department of Computer Science}
+\affiliation{University of Foo}
+\mail{name@foo.edu}
+\addressStreet{Street address}
+\addressCity{City}
+\phonenumber{+1 123 456 7890}
+\homepage{www.mypersonalwebpage.com}
+\orcid{0000-0000-0000-0000}
+
+\begin{document}
+
+\makecvheader
+\makecvfooter
+
+\section{Professional Experience}
+\begin{description}
+    \idescr{2021 -- now}{Professor}{at the University of Foo}
+    \idescr{2019 -- 2020}{Professor}{at the University of Foo}[Doing research...]
+    \idescrshort{November 2021}{Research collaborations with Prof. John Doe at the University of Foo}
+    \idescrshort{November 2020}[Visiting Researcher.]{Research collaborations with Prof. John Doe at the University of Foo}
+\end{description}
+
+
+
+\section{Publications}
+
+\printpublications{article}{j}{International Journals}{}
+\printpublications{inproceedings}{c}{International Conferences}{}
+\printpublicationscustom{article}{k}{Article not with keyword}{notkeyword=testkeyword}
+\printpublicationscustom{article}{k}{Article with keyword and numbering not reset}{keyword=testkeyword,resetnumbers=false}
+
+\end{document}
