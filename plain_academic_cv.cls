@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------
 %                Identification
 %-------------------------------------------------------------------------
-\ProvidesClass{plain_academic_cv}[2021/10/31 v0.0.3 Plain Academic Curriculum Vitae Class]
+\ProvidesClass{plain_academic_cv}[2021/11/03 v0.0.4 Plain Academic Curriculum Vitae Class]
 \NeedsTeXFormat{LaTeX2e}
 
 \newif\if@short
@@ -20,6 +20,7 @@
 \LoadClass[\@@ptsize]{article}
 
 \setcounter{secnumdepth}{0} %% Remove numbering from Section and Subsection
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PACKAGES
@@ -87,6 +88,9 @@
         \href{https://orcid.org/\@orcid}{\@orcid}%\aiOrcid\acvHeaderIconSep\@orcid}%
         }
     \\
+    \if@short
+        \vspace{-1cm}
+    \fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +128,21 @@
 \NewDocumentCommand \idescrshort { m o m } {
     \item[#1] \IfNoValueTF{#2}{}{\textbf{#2}} #3
 }
-    
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INPUT SHORT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\inputshort}[1]{
+    \if@short
+        %
+    \else
+        \input{#1}
+    \fi
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAPHY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

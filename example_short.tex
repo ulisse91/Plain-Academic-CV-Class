@@ -1,5 +1,7 @@
 \documentclass[short]{plain_academic_cv}
 
+\usepackage{lipsum}
+
 \name{Name Surname}
 \department{Department of Computer Science}
 \affiliation{University of Foo}
@@ -15,19 +17,9 @@
 \makecvheader
 \makecvfooter
 
-\section{Professional Experience}
-\begin{description}
-    \idescr{2021 -- now}{Professor}{at the University of Foo}
-    \idescr{2021 -- now}{Professor}{at the University of Foo}[Doing research...]
-\end{description}
+\input{cv/professional_experience}
+\inputshort{text-input-test}
+\input{cv/publications}
 
-
-
-\section{Publications}
-
-\printpublications{article}{j}{International Journals}{}
-\printpublications{inproceedings}{c}{International Conferences}{}
-\printpublicationscustom{article}{k}{Article not with keyword}{notkeyword=testkeyword}
-\printpublicationscustom{article}{k}{Article with keyword and numbering not reset}{keyword=testkeyword,resetnumbers=false}
 
 \end{document}
