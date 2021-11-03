@@ -1,6 +1,7 @@
 %-------------------------------------------------------------------------
 %                Identification
 %-------------------------------------------------------------------------
+
 \ProvidesClass{plain_academic_cv}[2021/11/03 v0.0.4 Plain Academic Curriculum Vitae Class]
 \NeedsTeXFormat{LaTeX2e}
 
@@ -21,7 +22,6 @@
 
 \setcounter{secnumdepth}{0} %% Remove numbering from Section and Subsection
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,13 +38,19 @@
 \setlist[description]{font=\normalfont\itshape\space}
 \setlist[itemize,enumerate]{leftmargin=*,itemsep=0pt,parsep=0pt}
 
+\RequirePackage[
+    backend=biber,
+    style=numeric,
+    sorting=ydnt,
+    giveninits=true,
+    defernumbers=true,
+    maxbibnames=99]{biblatex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLORS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \definecolor{lightgray}{HTML}{999999}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PERSONAL INFORMATION
@@ -88,9 +94,6 @@
         \href{https://orcid.org/\@orcid}{\@orcid}%\aiOrcid\acvHeaderIconSep\@orcid}%
         }
     \\
-    \if@short
-        \vspace{-1cm}
-    \fi
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,9 +132,8 @@
     \item[#1] \IfNoValueTF{#2}{}{\textbf{#2}} #3
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% INPUT SHORT
+% COMMANDS SHORT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\inputshort}[1]{
@@ -142,22 +144,22 @@
     \fi
 }
 
+\if@short
+    \let\oldsection\section
+    \renewcommand{\section}[1]{
+        \vspace{-.8cm}
+        \oldsection{#1}
+    }
+    
+    % 
+
+    \renewcommand{\bibfont}{\small}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAPHY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[
-    backend=biber,
-    style=numeric,
-    sorting=ydnt,
-    giveninits=true,
-    defernumbers=true,
-    maxbibnames=99]{biblatex}
-
-\if@short
-    \renewcommand{\bibfont}{\small}
-\fi
 \setlength{\bibitemsep}{1.5ex}
 \setlength{\bibhang}{2.5em}
 \addbibresource{publications.bib}
