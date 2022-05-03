@@ -2,8 +2,11 @@
 %                Identification
 %-------------------------------------------------------------------------
 
-\ProvidesClass{plain_academic_cv}[2021/11/03 v0.0.4 Plain Academic Curriculum Vitae Class]
+\ProvidesClass{plain_academic_cv}[2022/05/03 v0.0.6 Plain Academic Curriculum Vitae Class]
 \NeedsTeXFormat{LaTeX2e}
+
+
+
 
 \newif\if@short
 \DeclareOption{short}{\@shorttrue}
@@ -12,6 +15,8 @@
 \if@short
     \def\@@ptsize{8pt}
 \fi
+
+
 
 % \DeclareOption{11pt}{\def\@@ptsize{11pt}}
 \DeclareOption*{%
@@ -29,7 +34,7 @@
 \RequirePackage{xparse}
 \RequirePackage{ifthen}
 % \RequirePackage{academicons}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{xcolor}
 \RequirePackage{geometry}
 \geometry{left=1.5cm, top=1cm, right=1.5cm, bottom=1.5cm, footskip=1cm}
@@ -90,7 +95,7 @@
     \ifthenelse{\isundefined{\@addressCity}}{}{\@addressCity}
     \hfill 
     \ifthenelse{\isundefined{\@orcid}}%
-        {}{
+        {}{Orcid: 
         \href{https://orcid.org/\@orcid}{\@orcid}%\aiOrcid\acvHeaderIconSep\@orcid}%
         }
     \\
@@ -118,18 +123,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NewDocumentCommand \idescr { m m m o } {
-    \item[#1] 
     \if@short
-        \textbf{#2} #3
+        \idescrshort{#1}{#2}{#3}
     \else 
+        \item[#1] 
         $ $\\ 
         \textbf{#2} #3
-         \IfNoValueTF{#4}{}{\\#4}
+        \IfNoValueTF{#4}{}{\\#4}
     \fi
 }
 
-\NewDocumentCommand \idescrshort { m o m } {
-    \item[#1] \IfNoValueTF{#2}{}{\textbf{#2}} #3
+% use second parameter for bullet point
+\NewDocumentCommand \idescrshort { m o m m } {
+    \item[#1\IfNoValueTF{#2}{ $\bullet$}{}] \IfNoValueTF{#3}{}{\textbf{#3}} #4
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
